@@ -11,7 +11,6 @@ public class ArgsTest {
     // [-l], [-p, 8080], [-d, /usr/logs]
     // {-l: [], -p: 8080, -d: /usr/logs}
     // Single Option:
-    //TODO:  - Bool      -l
 
     @Test
     void should_set_boolean_option_to_true_if_flag_present() {
@@ -31,6 +30,18 @@ public class ArgsTest {
 
 
     //TODO:  - Integer   -p 8080
+
+    @Test
+    void should_parse_int_as_option_value() {
+        IntOption option = Args.parse(IntOption.class, "-p", "8080");
+        assertEquals(8080, option.port());
+    }
+
+    static record IntOption(@Option("p") int port) {
+
+    }
+
+
     //TODO:  - String    -d /usr/logs
 
     //TODO:  multi options: -l -p 8080 -d /usr/logs
