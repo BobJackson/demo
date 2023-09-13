@@ -24,7 +24,7 @@ public class Args {
         return PARSERS.get(parameter.getType()).parse(arguments, parameter.getAnnotation(Option.class));
     }
 
-    private static Map<Class<?>, OptionsParser> PARSERS = Map.of(
+    private static final Map<Class<?>, OptionsParser> PARSERS = Map.of(
             boolean.class, new BooleanParser(),
             int.class, new SingularValueOptionParser<>(Integer::parseInt),
             String.class, new SingularValueOptionParser<>(Function.identity())
