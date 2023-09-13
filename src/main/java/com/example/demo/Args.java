@@ -29,31 +29,4 @@ public class Args {
             String.class, new StringOptionParser()
     );
 
-    interface OptionsParser {
-        Object parse(List<String> arguments, Option option);
-    }
-
-    static class StringOptionParser implements OptionsParser {
-        @Override
-        public Object parse(List<String> arguments, Option option) {
-            int index = arguments.indexOf("-" + option.value());
-            return arguments.get(index + 1);
-        }
-    }
-
-    static class IntOptionParser implements OptionsParser {
-        @Override
-        public Object parse(List<String> arguments, Option option) {
-            int index = arguments.indexOf("-" + option.value());
-            return Integer.parseInt(arguments.get(index + 1));
-        }
-
-    }
-
-    static class BooleanParser implements OptionsParser {
-        @Override
-        public Object parse(List<String> arguments, Option option) {
-            return arguments.contains("-" + option.value());
-        }
-    }
 }
