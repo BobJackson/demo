@@ -29,8 +29,6 @@ public class ArgsTest {
     }
 
 
-    //TODO:  - Integer   -p 8080
-
     @Test
     void should_parse_int_as_option_value() {
         IntOption option = Args.parse(IntOption.class, "-p", "8080");
@@ -43,6 +41,17 @@ public class ArgsTest {
 
 
     //TODO:  - String    -d /usr/logs
+
+
+    @Test
+    void should_get_string_as_option_value() {
+        StringOption option = Args.parse(StringOption.class, "-d", "/usr/logs");
+        assertEquals("/usr/logs", option.directory());
+    }
+
+    static record StringOption(@Option("d") String directory) {
+
+    }
 
     //TODO:  multi options: -l -p 8080 -d /usr/logs
 
