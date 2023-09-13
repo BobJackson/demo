@@ -21,8 +21,12 @@ public class Args {
     private static Object parseOption(List<String> arguments, Parameter parameter) {
         Option option = parameter.getAnnotation(Option.class);
         Class<?> type = parameter.getType();
-        OptionsParser parser = null;
+        OptionsParser parser = getOptionsParser(type);
+        return parser.parse(arguments, option);
+    }
 
+    private static OptionsParser getOptionsParser(Class<?> type) {
+        OptionsParser parser = null;
         if (type == boolean.class) {
             parser = new BooleanParser();
         }
@@ -32,7 +36,7 @@ public class Args {
         if (type == String.class) {
             parser = new StringOptionParser();
         }
-        return parser.parse(arguments, option);
+        return parser;
     }
 
     interface OptionsParser {
