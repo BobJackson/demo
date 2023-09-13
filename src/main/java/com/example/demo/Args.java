@@ -5,6 +5,7 @@ import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class Args {
 
@@ -26,7 +27,7 @@ public class Args {
     private static Map<Class<?>, OptionsParser> PARSERS = Map.of(
             boolean.class, new BooleanParser(),
             int.class, new SingularValueOptionParser<>(Integer::parseInt),
-            String.class, new SingularValueOptionParser<>(String::valueOf)
+            String.class, new SingularValueOptionParser<>(Function.identity())
     );
 
 }
