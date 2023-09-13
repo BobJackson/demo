@@ -19,7 +19,6 @@ public class Args {
     }
 
     private static Object parseOption(List<String> arguments, Parameter parameter) {
-        Object value = null;
         Option option = parameter.getAnnotation(Option.class);
         OptionsParser parser = null;
 
