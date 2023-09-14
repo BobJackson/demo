@@ -18,15 +18,6 @@ class ArgsTest {
     static record MultiOptions(@Option("l") boolean logging, @Option("p") int port, @Option("d") String directory) {
     }
 
-
-    //TODO: - int -p / -p 8080 8081
-    //TODO: - string -d / -d /usr/logs /usr/vars
-
-
-    //TODO: - int : 0
-
-    //TODO: - string : ""
-
     // -g this is a list -d 1 2 -3 5
 
     @Test
