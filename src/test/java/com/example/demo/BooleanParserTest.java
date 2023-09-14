@@ -10,9 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BooleanParserTest {
 
-    // sad path:
-    //TODO: -bool -l t / -l t f
-
     @Test
     void should_not_accept_extra_argument_for_boolean_option() {
         TooManyArgumentsException e = assertThrows(TooManyArgumentsException.class, () -> {
@@ -22,9 +19,6 @@ class BooleanParserTest {
         assertEquals("l", e.getOption());
     }
 
-
-    // default value
-    //TODO: - bool : false
     @Test
     void should_set_default_value_to_false_if_option_not_present() {
         assertFalse(new BooleanParser().parse(List.of(), option("l")));
