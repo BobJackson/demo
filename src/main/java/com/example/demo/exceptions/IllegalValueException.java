@@ -3,11 +3,19 @@ package com.example.demo.exceptions;
 public class IllegalValueException extends RuntimeException {
 
 
-    private final String passedValue;
-    private final String finalValue;
+    private final String option;
+    private final String value;
 
-    public IllegalValueException(String passedValue, String finalValue) {
-        this.passedValue = passedValue;
-        this.finalValue = finalValue;
+    public IllegalValueException(String option, String value) {
+        this.option = option;
+        this.value = value;
+    }
+
+    public String getOption() {
+        return option;
+    }
+
+    public String getValue() {
+        return value;
     }
 }
