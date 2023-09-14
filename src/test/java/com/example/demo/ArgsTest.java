@@ -59,13 +59,10 @@ class ArgsTest {
     static record MultiOptions(@Option("l") boolean logging, @Option("p") int port, @Option("d") String directory) {
     }
 
-    // sad path:
-    //TODO: -bool -l t / -l t f
 
     //TODO: - int -p / -p 8080 8081
     //TODO: - string -d / -d /usr/logs /usr/vars
-    // default value
-    //TODO: - bool : false
+
 
     //TODO: - int : 0
 

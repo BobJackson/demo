@@ -3,7 +3,7 @@ package com.example.demo;
 import java.util.List;
 import java.util.function.Function;
 
-class SingularValueOptionParser<T> implements OptionsParser {
+class SingularValueOptionParser<T> implements OptionsParser<T> {
 
     Function<String, T> valueParser;
 

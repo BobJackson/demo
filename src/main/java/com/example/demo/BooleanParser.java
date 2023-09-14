@@ -2,9 +2,13 @@ package com.example.demo;
 
 import java.util.List;
 
-class BooleanParser implements OptionsParser {
+class BooleanParser implements OptionsParser<Boolean> {
+
     @Override
-    public Object parse(List<String> arguments, Option option) {
-        return arguments.contains("-" + option.value());
+    public Boolean parse(List<String> arguments, Option option) {
+        int index = arguments.indexOf("-" + option.value());
+        if (index + 1 < arguments.size() &&
+                !arguments.get(index + 1).startsWith("-")) throw new TooManyArgumentsException(option.value());
+        return index != -1;
     }
 }
