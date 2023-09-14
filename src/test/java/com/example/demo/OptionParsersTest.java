@@ -11,11 +11,36 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.example.demo.OptionParsersTest.BooleanParserTest.option;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OptionParsersTest {
+
+    @Nested
+    class BooleanOptionParser {
+
+        // Sad Path
+        @Test
+        void should_not_accept_extra_argument_for_boolean_option() {
+            TooManyArgumentsException e = assertThrows(TooManyArgumentsException.class, () -> {
+                OptionParsers.bool().parse(asList("-l", "t"), option("l"));
+            });
+
+            assertEquals("l", e.getOption());
+        }
+
+        // Default Value
+        @Test
+        void should_set_default_value_to_false_if_option_not_present() {
+            assertFalse(OptionParsers.bool().parse(List.of(), option("l")));
+        }
+
+        // Happy path
+        @Test
+        void should_set_default_value_to_true_if_option_present() {
+            assertTrue(OptionParsers.bool().parse(List.of("-l"), option("l")));
+        }
+    }
 
     @Nested
     class UnaryOptionParser {
@@ -59,43 +84,28 @@ class OptionParsersTest {
     }
 
     @Nested
-    class BooleanParserTest {
+    class ListOptionParser {
+        // TODO:  -g this is a list -d 1 2 -3 5
 
-        // Sad Path
-        @Test
-        void should_not_accept_extra_argument_for_boolean_option() {
-            TooManyArgumentsException e = assertThrows(TooManyArgumentsException.class, () -> {
-                OptionParsers.bool().parse(asList("-l", "t"), option("l"));
-            });
+        // TODO: default value []
 
-            assertEquals("l", e.getOption());
-        }
+        // TODO: -d a throw exception
 
-        // Default Value
-        @Test
-        void should_set_default_value_to_false_if_option_not_present() {
-            assertFalse(OptionParsers.bool().parse(List.of(), option("l")));
-        }
-
-        // Happy path
-        @Test
-        void should_set_default_value_to_true_if_option_present() {
-            assertTrue(OptionParsers.bool().parse(List.of("-l"), option("l")));
-        }
-
-        static Option option(String value) {
-            return new Option() {
-
-                @Override
-                public Class<? extends Annotation> annotationType() {
-                    return Option.class;
-                }
-
-                @Override
-                public String value() {
-                    return value;
-                }
-            };
-        }
     }
+
+    static Option option(String value) {
+        return new Option() {
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Option.class;
+            }
+
+            @Override
+            public String value() {
+                return value;
+            }
+        };
+    }
+
 }
