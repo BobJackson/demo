@@ -29,7 +29,6 @@ class BooleanParserTest {
         assertTrue(new BooleanParser().parse(List.of("-l"), option("l")));
     }
 
-
     static Option option(String value) {
         return new Option() {
 
