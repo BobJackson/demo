@@ -19,7 +19,7 @@ class SingularValueOptionParser<T> implements OptionsParser<T> {
         int index = arguments.indexOf("-" + option.value());
         if (index == -1) return defaultValue;
         List<String> values = getValues(arguments, index);
-        if (values.size() < 1) throw new InsufficientArgumentsException(option.value());
+        if (values.isEmpty()) throw new InsufficientArgumentsException(option.value());
         if (values.size() > 1) throw new TooManyArgumentsException(option.value());
         return valueParser.apply(arguments.get(index + 1));
     }
