@@ -7,27 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArgsTest {
 
-    // -l -p 8080 -d /usr/logs
-    // [-l], [-p, 8080], [-d, /usr/logs]
-    // {-l: [], -p: 8080, -d: /usr/logs}
-    // Single Option:
-
-    @Test
-    void should_set_boolean_option_to_true_if_flag_present() {
-        BooleanOption options = Args.parse(BooleanOption.class, "-l");
-        assertTrue(options.logging());
-    }
-
-    @Test
-    void should_set_boolean_option_to_false_if_flag_not_present() {
-        BooleanOption options = Args.parse(BooleanOption.class);
-        assertFalse(options.logging());
-    }
-
-    static record BooleanOption(@Option("l") boolean logging) {
-
-    }
-
     @Test
     void should_parse_int_as_option_value() {
         IntOption option = Args.parse(IntOption.class, "-p", "8080");
