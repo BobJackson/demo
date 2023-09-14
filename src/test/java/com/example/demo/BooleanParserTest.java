@@ -24,6 +24,11 @@ class BooleanParserTest {
         assertFalse(new BooleanParser().parse(List.of(), option("l")));
     }
 
+    @Test
+    void should_set_default_value_to_true_if_option_present() {
+        assertTrue(new BooleanParser().parse(List.of("-l"), option("l")));
+    }
+
 
     static Option option(String value) {
         return new Option() {
