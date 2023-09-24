@@ -25,7 +25,7 @@ class ArgsTest {
             Args.parse(OptionsWithoutAnnotation.class, "-l", "-p", "8080", "-d", "/usr/logs");
         });
 
-        assertEquals("port", e.getParamter());
+        assertEquals("port", e.getParameter());
     }
 
     static record OptionsWithoutAnnotation(@Option("l") boolean logging, int port, @Option("d") String directory) {

@@ -7,7 +7,7 @@ public class IllegalOptionException extends RuntimeException {
         this.parameter = parameter;
     }
 
-    public String getParamter() {
+    public String getParameter() {
         return parameter;
     }
 }
