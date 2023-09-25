@@ -16,7 +16,7 @@ class ArgsTest {
 
     }
 
-    static record MultiOptions(@Option("l") boolean logging, @Option("p") int port, @Option("d") String directory) {
+    record MultiOptions(@Option("l") boolean logging, @Option("p") int port, @Option("d") String directory) {
     }
 
     @Test
@@ -28,7 +28,7 @@ class ArgsTest {
         assertEquals("port", e.getParameter());
     }
 
-    static record OptionsWithoutAnnotation(@Option("l") boolean logging, int port, @Option("d") String directory) {
+    record OptionsWithoutAnnotation(@Option("l") boolean logging, int port, @Option("d") String directory) {
     }
 
     // -g this is a list -d 1 2 -3 5
@@ -41,6 +41,6 @@ class ArgsTest {
         assertArrayEquals(new Integer[]{1, 2, -3, 5}, options.decimals());
     }
 
-    static record ListOptions(@Option("g") String[] group, @Option("d") Integer[] decimals) {
+    record ListOptions(@Option("g") String[] group, @Option("d") Integer[] decimals) {
     }
 }
